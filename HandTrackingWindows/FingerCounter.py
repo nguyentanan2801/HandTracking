@@ -5,8 +5,8 @@ import os
 import HandTrackingModule as htm
 import socket
 
-# HOST = '192.168.1.5'
-# PORT = 8080
+HOST = '192.168.1.13'
+PORT = 8080
 
 wCam, hCam = 640, 480
 
@@ -14,9 +14,9 @@ cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
 cap.set(4, hCam)
 
-# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# server_address = (HOST, PORT)
-# s.connect(server_address)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_address = (HOST, PORT)
+s.connect(server_address)
 
 folderPath = "FingerImages"
 myList = os.listdir(folderPath)
@@ -60,24 +60,24 @@ while True:
         totalFingers = fingers.count(1)
         print(totalFingers)
 
-        # if totalFingers == 0:
-        #     print("0")
-        #     s.send(bytes("0", 'utf8'))
-        # if totalFingers == 1:
-        #     print("1")
-        #     s.send(bytes("1", 'utf8'))
-        # if totalFingers == 2:
-        #     print("2")
-        #     s.send(bytes("2", 'utf8'))
-        # if totalFingers == 3:
-        #     print("3")
-        #     s.send(bytes("3", 'utf8'))
-        # if totalFingers == 4:
-        #     print("4")
-        #     s.send(bytes("4", 'utf8'))
-        # if totalFingers == 5:
-        #     print("5")
-        #     s.send(bytes("5", 'utf8'))
+        if totalFingers == 0:
+            print("0")
+            s.send(bytes("0", 'utf8'))
+        if totalFingers == 1:
+            print("1")
+            s.send(bytes("1", 'utf8'))
+        if totalFingers == 2:
+            print("2")
+            s.send(bytes("2", 'utf8'))
+        if totalFingers == 3:
+            print("3")
+            s.send(bytes("3", 'utf8'))
+        if totalFingers == 4:
+            print("4")
+            s.send(bytes("4", 'utf8'))
+        if totalFingers == 5:
+            print("5")
+            s.send(bytes("5", 'utf8'))
 
 
         h, w, c = overlayList[totalFingers - 1].shape
